@@ -8,23 +8,23 @@ function normalized(data){ // i & r
     return [i, r, v, p]
 }
 
-const argFact = (compareFn) => (array) => array.map((el, idx) => [el, idx]).reduce(compareFn)[1]
-const argMax = argFact((min, el) => (el,[0] > min[0] ? el : min))
+const argFact = (compareFn) => (array) => array.map((el, idx) => [el, idx]). reduce(compareFn)[1]
+const argMax = argFact((min, el) => (el[0] > min[0] ? el : min ))
 
 function ArgMax(res){
-    label = "NORMAL" 
+  label = "NORMAL"
     cls_data = []
     for(i=0; i<res.length; i++){
         cls_data[i] = res[i]
     }
     console.log(cls_data, argMax(cls_data));
     
-    if(argMax(cls_data) == 1){
-        label = "OVER VOLTAGE"
-    }if(argMax(cls_data) == 0){
-        label = "DROP VOLTAGE"
-    }
-    return label
+  if(argMax(cls_data) == 1){
+      label = "OVER VOLTAGE"
+  }if(argMax(cls_data) == 0){
+      label = "DROP VOLTAGE"
+  }
+ return label
 }
 
 async function classify(data){
@@ -44,7 +44,7 @@ async function classify(data){
                 tf_data
         );
         result = predict.dataSync();
-        return ArgMax ( result );
+        return ArgMax( result );
         
     }catch(e){
       console.log(e);
@@ -54,3 +54,4 @@ async function classify(data){
 module.exports = {
     classify: classify 
 }
+  
